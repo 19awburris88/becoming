@@ -2,6 +2,7 @@ import Nav from '../components/Nav'
 import Hero from '../components/Hero'
 import LetterSection from '../components/LetterSection'
 import OurStory from '../components/OurStory'
+import PhotoSlider from '../components/PhotoSlider'
 import WhatILove from '../components/WhatILove'
 import HusbandIWantToBe from '../components/HusbandIWantToBe'
 import LovePreparation from '../components/LovePreparation'
@@ -19,6 +20,7 @@ export default function Home() {
       <Hero />
       <LetterSection />
       <OurStory />
+      <PhotoSlider />
       <WhatILove />
       <HusbandIWantToBe />
       <LovePreparation />
