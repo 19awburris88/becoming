@@ -47,7 +47,7 @@ export default function Nav() {
       </ul>
 
       <button
-        className={styles.burger}
+        className={`${styles.burger} ${menuOpen ? styles.burgerOpen : ''}`}
         onClick={() => setMenuOpen(o => !o)}
         aria-label="Toggle menu"
       >
