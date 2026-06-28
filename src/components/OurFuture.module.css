@@ -1,0 +1,195 @@
+.section {
+  background: var(--ivory);
+  padding: 0;
+}
+
+/* Already Building block */
+.alreadyBlock {
+  background: var(--sand);
+  padding: 8rem 6%;
+}
+
+.alreadyHeader {
+  max-width: 680px;
+  margin: 0 auto 4rem;
+}
+
+.alreadySub {
+  font-size: 0.95rem;
+  color: var(--text-light);
+  font-style: italic;
+  font-family: var(--font-quote);
+  margin-top: 0.75rem;
+  line-height: 1.6;
+}
+
+.alreadyGrid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.85rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* FadeIn wrapper is the flex child */
+.alreadyGrid > * {
+  flex: 0 0 calc(33.333% - 0.567rem);
+  min-width: 0;
+  display: flex;
+}
+
+.alreadyCard {
+  width: 100%;
+  background: var(--white);
+  border: 1px solid rgba(168, 107, 68, 0.1);
+  border-radius: 12px;
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  text-align: center;
+  transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.alreadyCard:hover {
+  border-color: rgba(168, 107, 68, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(36, 24, 18, 0.07);
+}
+
+.alreadyCard:hover {
+  border-color: rgba(168, 107, 68, 0.3);
+}
+
+.alreadyLabel {
+  font-size: 0.92rem;
+  color: var(--text);
+  line-height: 1.4;
+  font-weight: 600;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .alreadyGrid > * {
+    flex: 0 0 calc(50% - 0.425rem);
+  }
+}
+
+@media (max-width: 480px) {
+  .alreadyGrid > * {
+    flex: 0 0 100%;
+  }
+}
+
+/* Vision block */
+.visionsBlock {
+  padding: 8rem 6%;
+}
+
+.visionsHeader {
+  max-width: 680px;
+  margin: 0 auto 4.5rem;
+  text-align: center;
+}
+
+/* Existing header (reused by both blocks) */
+.header {
+  max-width: 680px;
+  margin: 0 auto 4.5rem;
+  text-align: center;
+}
+
+.eyebrow {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--copper);
+  margin-bottom: 1.5rem;
+}
+
+.heading {
+  font-family: var(--font-heading);
+  font-size: clamp(2.4rem, 5.5vw, 4.5rem);
+  font-weight: 400;
+  line-height: 1.05;
+  color: var(--espresso);
+  margin-bottom: 1rem;
+  letter-spacing: -0.01em;
+}
+
+.sub {
+  font-size: 0.9rem;
+  color: var(--text-light);
+  letter-spacing: 0.02em;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  align-items: stretch;
+}
+
+/* FadeIn wrapper must stretch to fill grid cell */
+.grid > * {
+  display: flex;
+}
+
+.visionCard {
+  width: 100%;
+  background: var(--white);
+  border: 1px solid rgba(168, 107, 68, 0.12);
+  border-radius: 16px;
+  padding: 2.25rem 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  text-align: center;
+  align-items: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.visionCard:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 52px rgba(36, 24, 18, 0.1);
+  border-color: rgba(168, 107, 68, 0.28);
+}
+
+.visionIcon {
+  font-size: 1.5rem;
+  color: var(--copper);
+  flex-shrink: 0;
+}
+
+.visionTitle {
+  font-family: var(--font-heading);
+  font-size: 1.65rem;
+  font-weight: 400;
+  color: var(--espresso);
+  line-height: 1.1;
+}
+
+.visionText {
+  font-size: 0.9rem;
+  line-height: 1.8;
+  color: var(--text-light);
+  font-weight: 300;
+  flex: 1;
+}
+
+@media (max-width: 1000px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 540px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

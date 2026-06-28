@@ -1,0 +1,134 @@
+.section {
+  background: var(--sand);
+  padding: 8rem 6%;
+}
+
+.inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.header {
+  max-width: 600px;
+  margin-bottom: 4.5rem;
+}
+
+.eyebrow {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--copper);
+  margin-bottom: 1.25rem;
+}
+
+.heading {
+  font-family: var(--font-heading);
+  font-size: clamp(2.4rem, 5.5vw, 4.5rem);
+  font-weight: 400;
+  line-height: 1.05;
+  color: var(--espresso);
+  margin-bottom: 1rem;
+  letter-spacing: -0.01em;
+}
+
+.sub {
+  font-size: 1rem;
+  color: var(--text-light);
+  font-style: italic;
+  font-family: var(--font-quote);
+  line-height: 1.6;
+}
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.25rem;
+}
+
+/* FadeIn wrapper is the flex child — size it, then let card fill */
+.grid > * {
+  flex: 0 0 calc(33.333% - 0.84rem);
+  min-width: 0;
+  display: flex;
+}
+
+.card {
+  width: 100%;
+  background: var(--white);
+  border: 1px solid rgba(168, 107, 68, 0.1);
+  border-radius: 16px;
+  padding: 2.25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 1rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 56px rgba(36, 24, 18, 0.12);
+  border-color: rgba(168, 107, 68, 0.22);
+}
+
+.cardTop {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+}
+
+.icon {
+  font-size: 1.5rem;
+  color: var(--copper);
+}
+
+.tags {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.tag {
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-xlight);
+  background: var(--sand);
+  padding: 0.25rem 0.65rem;
+  border-radius: 999px;
+}
+
+.title {
+  font-family: var(--font-heading);
+  font-size: 1.75rem;
+  font-weight: 500;
+  color: var(--espresso);
+  line-height: 1.1;
+}
+
+.body {
+  font-size: 0.95rem;
+  line-height: 1.85;
+  color: var(--text-light);
+  font-weight: 300;
+  flex: 1;
+}
+
+@media (max-width: 900px) {
+  .grid > * {
+    flex: 0 0 calc(50% - 0.625rem);
+  }
+}
+
+@media (max-width: 600px) {
+  .grid > * {
+    flex: 0 0 100%;
+  }
+}

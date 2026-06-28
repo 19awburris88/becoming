@@ -1,0 +1,297 @@
+.section {
+  background: var(--espresso);
+  color: var(--ivory);
+  padding: 8rem 6%;
+}
+
+.header {
+  max-width: 700px;
+  margin: 0 auto 5rem;
+  text-align: center;
+}
+
+.eyebrow {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--copper-light);
+  margin-bottom: 1.5rem;
+}
+
+.heading {
+  font-family: var(--font-heading);
+  font-size: clamp(2.2rem, 5vw, 4rem);
+  font-weight: 300;
+  line-height: 1.1;
+  color: var(--ivory);
+  letter-spacing: -0.01em;
+}
+
+.timeline {
+  position: relative;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.line {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: linear-gradient(to bottom, transparent, rgba(168, 107, 68, 0.4) 10%, rgba(168, 107, 68, 0.4) 90%, transparent);
+  transform: translateX(-50%);
+}
+
+.item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0;
+  margin-bottom: 4rem;
+  position: relative;
+}
+
+.item:nth-child(odd) {
+  flex-direction: row-reverse;
+}
+
+.connector {
+  flex: 0 0 auto;
+  width: calc(50% - 0px);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 0.35rem;
+}
+
+.item:nth-child(odd) .connector {
+  justify-content: center;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--copper);
+  border: 2px solid var(--espresso);
+  box-shadow: 0 0 0 3px rgba(168, 107, 68, 0.25);
+  flex-shrink: 0;
+}
+
+.card {
+  flex: 0 0 calc(50% - 2.5rem);
+  padding: 1.5rem 1.75rem;
+  background: rgba(255, 253, 249, 0.04);
+  border: 1px solid rgba(168, 107, 68, 0.15);
+  border-radius: 12px;
+  transition: border-color 0.3s ease, background 0.3s ease, transform 0.3s ease;
+}
+
+.card:hover {
+  border-color: rgba(168, 107, 68, 0.35);
+  background: rgba(255, 253, 249, 0.07);
+  transform: translateY(-2px);
+}
+
+.future .card:hover {
+  transform: none;
+  border-color: rgba(168, 107, 68, 0.1);
+  background: rgba(255, 253, 249, 0.02);
+}
+
+.item:nth-child(even) .card {
+  margin-left: 2.5rem;
+}
+
+.item:nth-child(odd) .card {
+  margin-right: 2.5rem;
+}
+
+.date {
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--copper-light);
+  display: block;
+  margin-bottom: 0.4rem;
+}
+
+.label {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: var(--ivory);
+  margin-bottom: 0.6rem;
+}
+
+.text {
+  font-size: 0.95rem;
+  line-height: 1.8;
+  color: rgba(255, 253, 249, 0.55);
+  font-weight: 300;
+}
+
+.future .card {
+  background: rgba(255, 253, 249, 0.02);
+  border-style: dashed;
+  border-color: rgba(168, 107, 68, 0.1);
+}
+
+.future .label {
+  color: rgba(255, 253, 249, 0.35);
+}
+
+.future .text {
+  color: rgba(168, 107, 68, 0.4);
+  font-style: italic;
+  font-family: var(--font-quote);
+}
+
+.future .dot {
+  background: transparent;
+  border-color: rgba(168, 107, 68, 0.3);
+  box-shadow: none;
+}
+
+/* Dates section */
+
+.datesSection {
+  margin-top: 7rem;
+  padding-top: 5rem;
+  border-top: 1px solid rgba(168, 107, 68, 0.15);
+}
+
+.datesHeader {
+  max-width: 600px;
+  margin: 0 auto 3.5rem;
+  text-align: center;
+}
+
+.datesEyebrow {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--copper-light);
+  opacity: 0.7;
+  margin-bottom: 1rem;
+}
+
+.datesHeading {
+  font-family: var(--font-heading);
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-weight: 300;
+  color: var(--ivory);
+  letter-spacing: -0.01em;
+  margin-bottom: 0.75rem;
+}
+
+.datesSub {
+  font-family: var(--font-quote);
+  font-style: italic;
+  font-size: 0.95rem;
+  color: rgba(255, 253, 249, 0.3);
+}
+
+.datesGrid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 0.75rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.dateCard {
+  background: rgba(255, 253, 249, 0.04);
+  border: 1px solid rgba(168, 107, 68, 0.1);
+  border-radius: 10px;
+  padding: 1rem 0.9rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  position: relative;
+  transition: border-color 0.25s ease, background 0.25s ease;
+}
+
+.dateCard:hover {
+  border-color: rgba(168, 107, 68, 0.3);
+  background: rgba(255, 253, 249, 0.06);
+}
+
+.dateCardFirst {
+  border-color: rgba(168, 107, 68, 0.35);
+  background: rgba(168, 107, 68, 0.07);
+}
+
+.dateNum {
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: var(--copper-light);
+  opacity: 0.6;
+}
+
+.dateName {
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 400;
+  color: rgba(255, 253, 249, 0.65);
+  line-height: 1.3;
+}
+
+.dateCard:hover .dateName {
+  color: rgba(255, 253, 249, 0.9);
+}
+
+.dateTag {
+  font-size: 0.58rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--copper-light);
+  margin-top: 0.1rem;
+}
+
+@media (max-width: 1024px) {
+  .datesGrid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .line {
+    left: 1.25rem;
+  }
+
+  .item,
+  .item:nth-child(odd) {
+    flex-direction: row;
+    gap: 0;
+  }
+
+  .connector,
+  .item:nth-child(odd) .connector {
+    width: 2.5rem;
+    flex-shrink: 0;
+    justify-content: flex-start;
+  }
+
+  .card,
+  .item:nth-child(even) .card,
+  .item:nth-child(odd) .card {
+    flex: 1;
+    margin: 0;
+  }
+
+  .datesGrid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .datesGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
