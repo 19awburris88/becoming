@@ -80,8 +80,13 @@
 }
 
 @media (max-width: 768px) {
+  .section {
+    padding: 5rem 5%;
+  }
+
   .grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 0.65rem;
   }
 }
 

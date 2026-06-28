@@ -261,6 +261,10 @@
 }
 
 @media (max-width: 768px) {
+  .section {
+    padding: 5rem 5%;
+  }
+
   .line {
     left: 1.25rem;
   }
@@ -283,6 +287,11 @@
   .item:nth-child(odd) .card {
     flex: 1;
     margin: 0;
+  }
+
+  .datesSection {
+    margin-top: 4rem;
+    padding-top: 3.5rem;
   }
 
   .datesGrid {

@@ -179,3 +179,13 @@
     max-width: 100%;
   }
 }
+
+@media (max-width: 768px) {
+  .section {
+    padding: 5rem 5%;
+  }
+
+  .experiences {
+    margin-bottom: 2.5rem;
+  }
+}

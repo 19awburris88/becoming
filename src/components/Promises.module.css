@@ -86,3 +86,13 @@
   letter-spacing: 0.01em;
   line-height: 1.3;
 }
+
+@media (max-width: 768px) {
+  .section {
+    padding: 5rem 5%;
+  }
+
+  .header {
+    margin-bottom: 2.5rem;
+  }
+}

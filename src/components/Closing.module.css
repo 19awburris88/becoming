@@ -71,3 +71,13 @@
   color: var(--copper);
   opacity: 0.5;
 }
+
+@media (max-width: 768px) {
+  .section {
+    padding: 6rem 5% 5rem;
+  }
+
+  .statement {
+    margin-bottom: 2.5rem;
+  }
+}

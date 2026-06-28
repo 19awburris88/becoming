@@ -127,6 +127,17 @@
   }
 }
 
+@media (max-width: 768px) {
+  .section {
+    padding: 5rem 5%;
+  }
+
+  .header {
+    text-align: center;
+    max-width: 100%;
+  }
+}
+
 @media (max-width: 600px) {
   .grid > * {
     flex: 0 0 100%;

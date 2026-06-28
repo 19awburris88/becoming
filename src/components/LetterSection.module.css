@@ -75,3 +75,9 @@
   font-size: 1.3rem;
   color: var(--copper);
 }
+
+@media (max-width: 768px) {
+  .section {
+    padding: 5rem 5%;
+  }
+}

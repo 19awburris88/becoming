@@ -164,6 +164,12 @@
   }
 }
 
+@media (max-width: 768px) {
+  .section {
+    padding: 5rem 5%;
+  }
+}
+
 @media (max-width: 600px) {
   .grid {
     grid-template-columns: 1fr;
