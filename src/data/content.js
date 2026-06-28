@@ -31,7 +31,7 @@ export const timeline = [
     id: 5,
     date: "January 4, 2026",
     label: "Becoming Exclusive",
-    text: "Nobody else had mattered since the first date — I just needed her to know it. I came planning to ask about a relationship. What we landed on was a trial run. The beginning of something real. Shoutout to Jeni for being there for that moment.",
+    text: "Nobody else had mattered since the first date — I just needed her to know it. I came planning to ask about a relationship. What we landed on was a trial run. The beginning of something real. Shoutout to Jeni for the advice.",
     isFuture: false,
   },
   {
