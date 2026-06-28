@@ -8,12 +8,16 @@ import brunoMars from '../assets/brunomars.JPG'
 import girlfriendProposal from '../assets/girlfriend-proposal.JPEG'
 import nye2025 from '../assets/nye 2025.PNG'
 import valentines2026 from '../assets/valentines-2026.PNG'
+import willYou from '../assets/willyou.png'
+import willYou2 from '../assets/willyou2.png'
 
 // To add more photos later: import the file above and add an entry below
 const photos = [
   { src: blackRodeo,          caption: 'Black Rodeo' },
   { src: brunoMars,           caption: 'Bruno Mars' },
   { src: girlfriendProposal,  caption: 'The Girlfriend Proposal' },
+  { src: willYou,             caption: 'Will You?' },
+  { src: willYou2,            caption: 'Will You? II' },
   { src: nye2025,             caption: 'NYE 2025' },
   { src: valentines2026,      caption: "Valentine's 2026" },
 ]

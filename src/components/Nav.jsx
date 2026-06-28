@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
+import logoImg from '../assets/becoming-logo.png'
 import styles from './Nav.module.css'
 
 const links = [
@@ -28,8 +29,11 @@ export default function Nav() {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, delay: 1.2, ease: [0.25, 0.1, 0.25, 1] }}
     >
-      <Link to="/" className={styles.logo}>
-        Becoming Her Husband
+      <Link to="/" className={styles.logoLink}>
+        {scrolled
+          ? <img src={logoImg} alt="Becoming Her Husband" className={styles.logoImg} />
+          : <span className={styles.logoText}>Becoming Her Husband</span>
+        }
       </Link>
 
       <ul className={`${styles.links} ${menuOpen ? styles.linksOpen : ''}`}>
