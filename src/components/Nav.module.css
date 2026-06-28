@@ -100,13 +100,15 @@
     background: var(--espresso);
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.3s ease;
+    transition: opacity 0.3s ease, z-index 0s 0.3s;
     z-index: -1;
   }
 
   .linksOpen {
     opacity: 1;
     pointer-events: auto;
+    z-index: 99;
+    transition: opacity 0.3s ease;
   }
 
   .linksOpen .link {

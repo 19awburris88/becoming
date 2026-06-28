@@ -175,6 +175,11 @@
     grid-template-columns: 1fr;
   }
 
+  .card {
+    min-height: 200px;
+    justify-content: center;
+  }
+
   .modal {
     padding: 2rem 1.5rem;
   }
