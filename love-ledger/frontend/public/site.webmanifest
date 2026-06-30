@@ -1,0 +1,13 @@
+{
+  "name": "Love Ledger",
+  "short_name": "Love Ledger",
+  "description": "The CRM for the people you love.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F8F6F1",
+  "theme_color": "#1C2B3A",
+  "icons": [
+    { "src": "/favicon.svg", "sizes": "any", "type": "image/svg+xml" },
+    { "src": "/apple-touch-icon.png", "sizes": "180x180", "type": "image/png" }
+  ]
+}

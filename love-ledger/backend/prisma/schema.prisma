@@ -1,0 +1,97 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Person {
+  id           String   @id @default(cuid())
+  userId       String
+  name         String
+  relationship String
+  birthday     DateTime?
+  anniversary  DateTime?
+  phone        String?
+  email        String?
+  photo        String?
+  favorites    Json     @default("{}")
+  sizes        Json     @default("{}")
+  loveProfile  Json     @default("{}")
+  notes        String?
+  lastContact  DateTime?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  dates    ImportantDate[]
+  memories Memory[]
+  gifts    Gift[]
+
+  @@index([userId])
+}
+
+model ImportantDate {
+  id          String   @id @default(cuid())
+  personId    String
+  title       String
+  date        DateTime
+  type        String
+  reminderDays Int[]
+  notes       String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  person Person @relation(fields: [personId], references: [id], onDelete: Cascade)
+
+  @@index([personId])
+}
+
+model Memory {
+  id          String   @id @default(cuid())
+  userId      String
+  title       String
+  date        DateTime
+  description String
+  tags        String[]
+  photos      String[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  people Person[]
+
+  @@index([userId])
+}
+
+model Gift {
+  id           String   @id @default(cuid())
+  userId       String
+  personId     String
+  title        String
+  occasion     String
+  budget       Float?
+  purchaseLink String?
+  notes        String?
+  status       String   @default("Idea")
+  addedDate    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  person Person @relation(fields: [personId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([personId])
+}
+
+model Reminder {
+  id        String   @id @default(cuid())
+  userId    String
+  entityId  String
+  entityType String
+  sendAt    DateTime
+  channel   String
+  sent      Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  @@index([userId, sendAt])
+}
