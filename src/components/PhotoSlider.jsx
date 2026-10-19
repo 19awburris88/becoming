@@ -29,7 +29,7 @@ const photos = [
   { src: usOpen,              caption: 'US Open' },
   { src: goldenHour,          caption: "Adrienne's Birthday" },
   { src: dateNight,           caption: 'Date Night' },
-  { src: downtownStroll,      caption: 'Downtown Stroll' },
+  { src: downtownStroll,      caption: 'Rodeo' },
 ]
 
 const rotations = [-2.5, 1.8, -1.2, 2.8, -2, 1.5, -3, 2]
