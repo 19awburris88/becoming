@@ -27,7 +27,7 @@ const photos = [
   { src: valentines2026,      caption: "Valentine's 2026" },
   { src: madeToLast,          caption: 'Made to Last' },
   { src: usOpen,              caption: 'US Open' },
-  { src: goldenHour,          caption: 'Golden Hour' },
+  { src: goldenHour,          caption: "Adrienne's Birthday" },
   { src: dateNight,           caption: 'Date Night' },
   { src: downtownStroll,      caption: 'Downtown Stroll' },
 ]
