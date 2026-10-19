@@ -1,4 +1,5 @@
 import FadeIn from './FadeIn'
+import ChapterMark from './ChapterMark'
 import styles from './LetterSection.module.css'
 
 export default function LetterSection() {
@@ -6,6 +7,7 @@ export default function LetterSection() {
     <section id="letter" className={styles.section}>
       <div className={styles.inner}>
         <FadeIn delay={0}>
+          <ChapterMark number="I" />
           <p className={styles.eyebrow}>Dear Adrienne</p>
         </FadeIn>
 

@@ -13,7 +13,7 @@
   font-weight: 600;
   letter-spacing: 0.3em;
   text-transform: uppercase;
-  color: var(--copper);
+  color: var(--gold);
   margin-bottom: 1.75rem;
 }
 
@@ -22,7 +22,7 @@
   font-size: clamp(2.4rem, 5.5vw, 4.5rem);
   font-weight: 400;
   line-height: 1.05;
-  color: var(--espresso);
+  color: var(--oxblood);
   margin-bottom: 3.5rem;
   letter-spacing: -0.01em;
 }
@@ -47,8 +47,8 @@
   font-size: clamp(1.35rem, 2.8vw, 1.8rem);
   font-weight: 400;
   line-height: 1.5;
-  color: var(--copper);
-  border-left: 2px solid var(--copper);
+  color: var(--gold);
+  border-left: 2px solid var(--gold);
   padding-left: 1.75rem;
   margin: 0.5rem 0;
   letter-spacing: 0.01em;
@@ -58,7 +58,7 @@
   font-family: var(--font-heading);
   font-size: clamp(1.4rem, 3vw, 2rem) !important;
   font-weight: 500 !important;
-  color: var(--espresso) !important;
+  color: var(--oxblood) !important;
   font-style: italic;
 }
 
@@ -73,7 +73,7 @@
 
 .signature span {
   font-size: 1.3rem;
-  color: var(--copper);
+  color: var(--gold);
 }
 
 @media (max-width: 768px) {

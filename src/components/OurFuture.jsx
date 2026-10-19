@@ -1,5 +1,6 @@
 import { futureVisions, alreadyBuilding } from '../data/content'
 import FadeIn from './FadeIn'
+import ChapterMark from './ChapterMark'
 import styles from './OurFuture.module.css'
 
 export default function OurFuture() {
@@ -8,6 +9,7 @@ export default function OurFuture() {
       <div className={styles.alreadyBlock}>
         <div className={styles.alreadyHeader}>
           <FadeIn>
+            <ChapterMark number="VII" />
             <p className={styles.eyebrow}>Already Building Our Future</p>
           </FadeIn>
           <FadeIn delay={0.1}>

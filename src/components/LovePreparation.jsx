@@ -2,6 +2,7 @@ import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 import { lovePreparation } from '../data/content'
 import FadeIn from './FadeIn'
+import ChapterMark from './ChapterMark'
 import styles from './LovePreparation.module.css'
 
 function ActItem({ text, index }) {
@@ -29,6 +30,7 @@ export default function LovePreparation() {
         <div className={styles.top}>
           <div className={styles.topLeft}>
             <FadeIn>
+              <ChapterMark number="V" />
               <p className={styles.eyebrow}>Love Looks Like Preparation</p>
             </FadeIn>
             <FadeIn delay={0.1}>

@@ -1,16 +1,50 @@
-# React + Vite
+# The Next Chapter
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A faith-centered love letter from Austin to Adrienne — our story, the promises I'm practicing, and the future I'm preparing for.
 
-Currently, two official plugins are available:
+Built mobile-first and installable as an app, since it's mostly read on a phone.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Running it
 
-## React Compiler
+```bash
+npm install
+npm run dev       # local dev server
+npm run build     # production build in dist/
+npm run preview   # serve the production build locally
+```
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Install on a phone
 
-## Expanding the ESLint configuration
+Open the live site in Safari, tap **Share → Add to Home Screen**. It opens full screen with its own icon, and pages already visited still load with a weak signal.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Where things live
+
+| What | Where |
+| --- | --- |
+| Section text, timeline, the dates list | `src/data/content.js` |
+| 100 Reasons | `src/data/reasons.json` |
+| Photos in the "Our Moments" strip | `src/assets/` — import in `src/components/PhotoSlider.jsx` and add to `photos` |
+| Colors and fonts | `src/index.css` (`--oxblood`, `--gold`, `--ivory`, …) |
+| Section order on the home page | `src/pages/Home.jsx` |
+| Chapter numbers | `<ChapterMark number="…" />` at the top of each section |
+| App name, icons, offline behavior | `public/manifest.webmanifest`, `public/icon-*.png`, `public/sw.js` |
+
+### Adding a date
+
+Append to `datesArray` in `src/data/content.js` with the next `id`:
+
+```js
+{ id: 36, name: "Somewhere new" },
+```
+
+### Changing the app icon
+
+Edit `public/favicon.svg`; the PNG icons are rendered from it at 64, 180, 192, and 512 px.
+
+## Pages
+
+- `/` — the letter
+- `/letters` — letters
+- `/when-youre-ready` — when you're ready
+
+Built with React, Vite, and Framer Motion.

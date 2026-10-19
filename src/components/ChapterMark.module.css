@@ -1,0 +1,34 @@
+/* Block layout so the mark follows the section's own text-align */
+.mark {
+  margin-bottom: 1.5rem;
+}
+
+.label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 0.95rem;
+  letter-spacing: 0.06em;
+  color: var(--gold);
+}
+
+.ornament {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: var(--gold);
+}
+
+.rule {
+  width: 44px;
+  height: 1px;
+  background: currentColor;
+  opacity: 0.55;
+}
+
+.star {
+  width: 11px;
+  height: 11px;
+  fill: currentColor;
+}

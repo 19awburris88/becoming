@@ -1,5 +1,6 @@
 import { useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
+import { Ornament } from './ChapterMark'
 import styles from './Hero.module.css'
 
 const container = {
@@ -26,6 +27,9 @@ export default function Hero() {
       <motion.div className={styles.bg} style={{ y: bgY }} />
       <div className={styles.grain} />
       <div className={styles.overlay} />
+      <div className={styles.frame} aria-hidden="true">
+        <span className={styles.frameInner} />
+      </div>
 
       <motion.div className={styles.content} style={{ y: textY, opacity }}>
         <motion.div variants={container} initial="hidden" animate="show">
@@ -34,8 +38,12 @@ export default function Hero() {
           </motion.p>
 
           <motion.h1 className={styles.title} variants={item}>
-            Becoming<br />Her Husband
+            The Next<br />Chapter
           </motion.h1>
+
+          <motion.div className={styles.ornament} variants={item}>
+            <Ornament />
+          </motion.div>
 
           <motion.p className={styles.subtitle} variants={item}>
             Not a Proposal. A Promise.

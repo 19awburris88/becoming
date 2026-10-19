@@ -91,6 +91,15 @@ export const datesArray = [
   { id: 24, name: "Wings vs Dream" },
   { id: 25, name: "The Saint" },
   { id: 26, name: "Wings vs Aces" },
+  { id: 27, name: "Léonie" },
+  { id: 28, name: "Wings vs Fever" },
+  { id: 29, name: "Jo'Seon Wagyu Omakase" },
+  { id: 30, name: "Usher & Chris Brown" },
+  { id: 31, name: "Art Overdose" },
+  { id: 32, name: "Markette" },
+  { id: 33, name: "Harbor Night Cruise" },
+  { id: 34, name: "Sukh" },
+  { id: 35, name: "Beef House" },
 ]
 
 export const lovesCards = [

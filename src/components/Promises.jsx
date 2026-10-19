@@ -3,6 +3,7 @@ import { motion, useInView } from 'framer-motion'
 import { Check } from 'lucide-react'
 import { promises } from '../data/content'
 import FadeIn from './FadeIn'
+import ChapterMark from './ChapterMark'
 import styles from './Promises.module.css'
 
 function PromiseItem({ text, index }) {
@@ -31,6 +32,7 @@ export default function Promises() {
       <div className={styles.inner}>
         <div className={styles.header}>
           <FadeIn>
+            <ChapterMark number="VI" />
             <p className={styles.eyebrow}>Promises I Am Practicing</p>
           </FadeIn>
           <FadeIn delay={0.1}>

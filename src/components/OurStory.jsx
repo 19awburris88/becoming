@@ -2,6 +2,7 @@ import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 import { timeline, datesArray } from '../data/content'
 import FadeIn from './FadeIn'
+import ChapterMark from './ChapterMark'
 import styles from './OurStory.module.css'
 
 function TimelineItem({ item, index }) {
@@ -50,6 +51,7 @@ export default function OurStory() {
   return (
     <section id="story" className={styles.section}>
       <div className={styles.header}>
+        <ChapterMark number="II" />
         <p className={styles.eyebrow}>Our Story</p>
         <h2 className={styles.heading}>
           For years our paths crossed.<br />Then our worlds aligned.
