@@ -1,5 +1,5 @@
 .section {
-  background: var(--espresso);
+  background: var(--oxblood);
   padding: 8rem 6%;
 }
 
@@ -17,7 +17,7 @@
   font-weight: 600;
   letter-spacing: 0.3em;
   text-transform: uppercase;
-  color: var(--copper-light);
+  color: var(--gold-light);
   margin-bottom: 1.5rem;
 }
 
@@ -61,8 +61,8 @@
 }
 
 .item:hover .check {
-  border-color: rgba(168, 107, 68, 0.7);
-  color: var(--copper-light);
+  border-color: rgba(184, 137, 59, 0.7);
+  color: var(--gold-light);
 }
 
 .check {
@@ -70,11 +70,11 @@
   width: 28px;
   height: 28px;
   border-radius: 50%;
-  border: 1px solid rgba(168, 107, 68, 0.4);
+  border: 1px solid rgba(184, 137, 59, 0.4);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--copper-light);
+  color: var(--gold-light);
   transition: border-color 0.25s ease, color 0.25s ease;
 }
 

@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import logoImg from '../assets/becoming-logo.png'
 import styles from './Nav.module.css'
 
 const links = [
@@ -30,10 +29,13 @@ export default function Nav() {
       transition={{ duration: 0.8, delay: 1.2, ease: [0.25, 0.1, 0.25, 1] }}
     >
       <Link to="/" className={styles.logoLink}>
-        {scrolled
-          ? <img src={logoImg} alt="Becoming Her Husband" className={styles.logoImg} />
-          : <span className={styles.logoText}>Becoming Her Husband</span>
-        }
+        <svg className={styles.logoBook} viewBox="0 0 32 32" aria-hidden="true">
+          <rect x="5" y="3" width="22" height="26" rx="2" fill="#6B1A1F" />
+          <rect x="5" y="3" width="4" height="26" rx="1.5" fill="#4E1115" />
+          <rect x="11.5" y="6" width="13" height="20" fill="none" stroke="#D9B46A" strokeWidth="1" />
+          <path d="M18 12.5 L18.9 15.1 L21.5 16 L18.9 16.9 L18 19.5 L17.1 16.9 L14.5 16 L17.1 15.1 Z" fill="#D9B46A" />
+        </svg>
+        <span className={styles.logoText}>The Next Chapter</span>
       </Link>
 
       <ul className={`${styles.links} ${menuOpen ? styles.linksOpen : ''}`}>

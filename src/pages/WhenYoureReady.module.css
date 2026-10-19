@@ -1,5 +1,5 @@
 .lockScreen {
-  background: var(--espresso);
+  background: var(--oxblood);
   min-height: 100svh;
   display: flex;
   align-items: center;
@@ -27,11 +27,11 @@
 }
 
 .backLink:hover {
-  color: var(--copper-light);
+  color: var(--gold-light);
 }
 
 .lockIcon {
-  color: var(--copper-light);
+  color: var(--gold-light);
   opacity: 0.6;
   margin-bottom: 1.75rem;
 }
@@ -84,7 +84,7 @@
 }
 
 .input:focus {
-  border-color: rgba(168, 107, 68, 0.5);
+  border-color: rgba(184, 137, 59, 0.5);
 }
 
 .inputError {
@@ -106,7 +106,7 @@
 }
 
 .eyeBtn:hover {
-  color: var(--copper-light);
+  color: var(--gold-light);
 }
 
 .errorMsg {
@@ -116,11 +116,11 @@
 }
 
 .submit {
-  background: rgba(168, 107, 68, 0.2);
-  border: 1px solid rgba(168, 107, 68, 0.35);
+  background: rgba(184, 137, 59, 0.2);
+  border: 1px solid rgba(184, 137, 59, 0.35);
   border-radius: 10px;
   padding: 1rem;
-  color: var(--copper-light);
+  color: var(--gold-light);
   font-size: 0.78rem;
   font-weight: 600;
   letter-spacing: 0.2em;
@@ -129,8 +129,8 @@
 }
 
 .submit:hover {
-  background: rgba(168, 107, 68, 0.35);
-  border-color: var(--copper);
+  background: rgba(184, 137, 59, 0.35);
+  border-color: var(--gold);
 }
 
 .hint {
@@ -150,7 +150,7 @@
 }
 
 .header {
-  background: var(--espresso);
+  background: var(--oxblood);
   padding: 4rem 6% 4rem;
 }
 
@@ -168,7 +168,7 @@
 }
 
 .back:hover {
-  color: var(--copper-light);
+  color: var(--gold-light);
 }
 
 .headerContent {
@@ -180,7 +180,7 @@
   font-weight: 600;
   letter-spacing: 0.3em;
   text-transform: uppercase;
-  color: var(--copper-light);
+  color: var(--gold-light);
   margin-bottom: 1rem;
 }
 
@@ -214,11 +214,11 @@
 }
 
 .card {
-  border-bottom: 1px solid rgba(168, 107, 68, 0.12);
+  border-bottom: 1px solid rgba(184, 137, 59, 0.12);
 }
 
 .card:first-child {
-  border-top: 1px solid rgba(168, 107, 68, 0.12);
+  border-top: 1px solid rgba(184, 137, 59, 0.12);
 }
 
 .cardHeader {
@@ -242,20 +242,20 @@
 
 .cardIcon {
   font-size: 1.2rem;
-  color: var(--copper);
+  color: var(--gold);
 }
 
 .cardTitle {
   font-family: var(--font-heading);
   font-size: clamp(1.4rem, 3vw, 2rem);
   font-weight: 400;
-  color: var(--espresso);
+  color: var(--oxblood);
   line-height: 1.1;
 }
 
 .toggle {
   font-size: 1.5rem;
-  color: var(--copper);
+  color: var(--gold);
   opacity: 0.6;
   flex-shrink: 0;
   display: inline-block;

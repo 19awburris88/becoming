@@ -1,4 +1,5 @@
 import FadeIn from './FadeIn'
+import ChapterMark from './ChapterMark'
 import styles from './Closing.module.css'
 
 export default function Closing() {
@@ -6,6 +7,7 @@ export default function Closing() {
     <section className={styles.section}>
       <div className={styles.inner}>
         <FadeIn delay={0}>
+          <ChapterMark label="The Next Chapter" />
           <p className={styles.eyebrow}>Until then</p>
         </FadeIn>
 

@@ -1,5 +1,5 @@
 .section {
-  background: var(--espresso);
+  background: var(--oxblood);
   color: var(--ivory);
   padding: 8rem 6%;
 }
@@ -15,7 +15,7 @@
   font-weight: 600;
   letter-spacing: 0.3em;
   text-transform: uppercase;
-  color: var(--copper-light);
+  color: var(--gold-light);
   margin-bottom: 1.5rem;
 }
 
@@ -40,7 +40,7 @@
   top: 0;
   bottom: 0;
   width: 1px;
-  background: linear-gradient(to bottom, transparent, rgba(168, 107, 68, 0.4) 10%, rgba(168, 107, 68, 0.4) 90%, transparent);
+  background: linear-gradient(to bottom, transparent, rgba(184, 137, 59, 0.4) 10%, rgba(184, 137, 59, 0.4) 90%, transparent);
   transform: translateX(-50%);
 }
 
@@ -73,9 +73,9 @@
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background: var(--copper);
-  border: 2px solid var(--espresso);
-  box-shadow: 0 0 0 3px rgba(168, 107, 68, 0.25);
+  background: var(--gold);
+  border: 2px solid var(--oxblood);
+  box-shadow: 0 0 0 3px rgba(184, 137, 59, 0.25);
   flex-shrink: 0;
 }
 
@@ -83,20 +83,20 @@
   flex: 0 0 calc(50% - 2.5rem);
   padding: 1.5rem 1.75rem;
   background: rgba(255, 253, 249, 0.04);
-  border: 1px solid rgba(168, 107, 68, 0.15);
+  border: 1px solid rgba(184, 137, 59, 0.15);
   border-radius: 12px;
   transition: border-color 0.3s ease, background 0.3s ease, transform 0.3s ease;
 }
 
 .card:hover {
-  border-color: rgba(168, 107, 68, 0.35);
+  border-color: rgba(184, 137, 59, 0.35);
   background: rgba(255, 253, 249, 0.07);
   transform: translateY(-2px);
 }
 
 .future .card:hover {
   transform: none;
-  border-color: rgba(168, 107, 68, 0.1);
+  border-color: rgba(184, 137, 59, 0.1);
   background: rgba(255, 253, 249, 0.02);
 }
 
@@ -113,7 +113,7 @@
   font-weight: 600;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--copper-light);
+  color: var(--gold-light);
   display: block;
   margin-bottom: 0.4rem;
 }
@@ -136,7 +136,7 @@
 .future .card {
   background: rgba(255, 253, 249, 0.02);
   border-style: dashed;
-  border-color: rgba(168, 107, 68, 0.1);
+  border-color: rgba(184, 137, 59, 0.1);
 }
 
 .future .label {
@@ -144,14 +144,14 @@
 }
 
 .future .text {
-  color: rgba(168, 107, 68, 0.4);
+  color: rgba(184, 137, 59, 0.4);
   font-style: italic;
   font-family: var(--font-quote);
 }
 
 .future .dot {
   background: transparent;
-  border-color: rgba(168, 107, 68, 0.3);
+  border-color: rgba(184, 137, 59, 0.3);
   box-shadow: none;
 }
 
@@ -160,7 +160,7 @@
 .datesSection {
   margin-top: 7rem;
   padding-top: 5rem;
-  border-top: 1px solid rgba(168, 107, 68, 0.15);
+  border-top: 1px solid rgba(184, 137, 59, 0.15);
 }
 
 .datesHeader {
@@ -174,7 +174,7 @@
   font-weight: 600;
   letter-spacing: 0.3em;
   text-transform: uppercase;
-  color: var(--copper-light);
+  color: var(--gold-light);
   opacity: 0.7;
   margin-bottom: 1rem;
 }
@@ -205,7 +205,7 @@
 
 .dateCard {
   background: rgba(255, 253, 249, 0.04);
-  border: 1px solid rgba(168, 107, 68, 0.1);
+  border: 1px solid rgba(184, 137, 59, 0.1);
   border-radius: 10px;
   padding: 1rem 0.9rem;
   display: flex;
@@ -216,20 +216,20 @@
 }
 
 .dateCard:hover {
-  border-color: rgba(168, 107, 68, 0.3);
+  border-color: rgba(184, 137, 59, 0.3);
   background: rgba(255, 253, 249, 0.06);
 }
 
 .dateCardFirst {
-  border-color: rgba(168, 107, 68, 0.35);
-  background: rgba(168, 107, 68, 0.07);
+  border-color: rgba(184, 137, 59, 0.35);
+  background: rgba(184, 137, 59, 0.07);
 }
 
 .dateNum {
   font-size: 0.6rem;
   font-weight: 700;
   letter-spacing: 0.15em;
-  color: var(--copper-light);
+  color: var(--gold-light);
   opacity: 0.6;
 }
 
@@ -250,7 +250,7 @@
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--copper-light);
+  color: var(--gold-light);
   margin-top: 0.1rem;
 }
 

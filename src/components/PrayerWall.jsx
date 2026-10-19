@@ -1,4 +1,5 @@
 import FadeIn from './FadeIn'
+import ChapterMark from './ChapterMark'
 import styles from './PrayerWall.module.css'
 
 export default function PrayerWall() {
@@ -6,6 +7,7 @@ export default function PrayerWall() {
     <section id="prayer" className={styles.section}>
       <div className={styles.inner}>
         <FadeIn>
+          <ChapterMark number="IX" />
           <p className={styles.eyebrow}>If God Wills It</p>
         </FadeIn>
 

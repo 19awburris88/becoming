@@ -18,7 +18,7 @@
   font-weight: 600;
   letter-spacing: 0.3em;
   text-transform: uppercase;
-  color: var(--copper);
+  color: var(--gold);
   margin-bottom: 1.25rem;
 }
 
@@ -27,7 +27,7 @@
   font-size: clamp(2.4rem, 5.5vw, 4.5rem);
   font-weight: 400;
   line-height: 1.05;
-  color: var(--espresso);
+  color: var(--oxblood);
   margin-bottom: 1rem;
   letter-spacing: -0.01em;
 }
@@ -57,7 +57,7 @@
 .card {
   width: 100%;
   background: var(--white);
-  border: 1px solid rgba(168, 107, 68, 0.1);
+  border: 1px solid rgba(184, 137, 59, 0.1);
   border-radius: 16px;
   padding: 2.25rem;
   display: flex;
@@ -70,8 +70,8 @@
 
 .card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 20px 56px rgba(36, 24, 18, 0.12);
-  border-color: rgba(168, 107, 68, 0.22);
+  box-shadow: 0 20px 56px rgba(58, 16, 20, 0.12);
+  border-color: rgba(184, 137, 59, 0.22);
 }
 
 .cardTop {
@@ -84,7 +84,7 @@
 
 .icon {
   font-size: 1.5rem;
-  color: var(--copper);
+  color: var(--gold);
 }
 
 .tags {
@@ -109,7 +109,7 @@
   font-family: var(--font-heading);
   font-size: 1.75rem;
   font-weight: 500;
-  color: var(--espresso);
+  color: var(--oxblood);
   line-height: 1.1;
 }
 

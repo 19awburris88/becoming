@@ -2,6 +2,7 @@ import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 import reasons from '../data/reasons.json'
 import FadeIn from './FadeIn'
+import ChapterMark from './ChapterMark'
 import styles from './HundredReasons.module.css'
 
 function ReasonCard({ text, number }) {
@@ -27,6 +28,7 @@ export default function HundredReasons() {
     <section className={styles.section}>
       <div className={styles.header}>
         <FadeIn>
+          <ChapterMark number="VIII" />
           <p className={styles.eyebrow}>100 Reasons</p>
         </FadeIn>
         <FadeIn delay={0.1}>

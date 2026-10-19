@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { X } from 'lucide-react'
 import { lovesCards } from '../data/content'
 import FadeIn from './FadeIn'
+import ChapterMark from './ChapterMark'
 import styles from './WhatILove.module.css'
 
 export default function WhatILove() {
@@ -14,6 +15,7 @@ export default function WhatILove() {
     <section className={styles.section}>
       <div className={styles.header}>
         <FadeIn>
+          <ChapterMark number="III" />
           <p className={styles.eyebrow}>What I Love About You</p>
         </FadeIn>
         <FadeIn delay={0.1}>

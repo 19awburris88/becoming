@@ -5,18 +5,21 @@
 }
 
 :root {
-  --ivory: #F8F2EA;
-  --sand: #E6D5C3;
-  --sand-deep: #D4B99A;
-  --copper: #A86B44;
-  --copper-light: #C4895E;
-  --espresso: #241812;
-  --espresso-mid: #3A2218;
-  --text: #3A2B24;
-  --text-light: #7A6258;
-  --text-xlight: #A89080;
-  --white: #FFFDF9;
+  /* The Next Chapter — deep red cover, gold leaf, ivory pages */
+  --ivory: #F7F1E6;
+  --sand: #EADFCC;
+  --sand-deep: #D9C29A;
+  --gold: #B8893B;
+  --gold-light: #D9B46A;
+  --gold-gradient: linear-gradient(180deg, #F1D38C 0%, #D4A653 45%, #A97A2E 100%);
+  --oxblood: #6B1A1F;
+  --oxblood-deep: #4E1115;
+  --text: #3B2326;
+  --text-light: #7A5A57;
+  --text-xlight: #A8908A;
+  --white: #FFFDF8;
 
+  --font-display: 'Playfair Display', Georgia, serif;
   --font-heading: 'Cormorant Garamond', Georgia, serif;
   --font-body: 'Inter', system-ui, -apple-system, sans-serif;
   --font-quote: 'Playfair Display', Georgia, serif;
@@ -61,6 +64,6 @@ a {
 }
 
 ::selection {
-  background: var(--copper);
+  background: var(--gold);
   color: var(--white);
 }

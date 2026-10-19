@@ -1,5 +1,6 @@
 import FadeIn from './FadeIn'
 import { husbandCards } from '../data/content'
+import ChapterMark from './ChapterMark'
 import styles from './HusbandIWantToBe.module.css'
 
 export default function HusbandIWantToBe() {
@@ -8,6 +9,7 @@ export default function HusbandIWantToBe() {
       <div className={styles.inner}>
         <div className={styles.header}>
           <FadeIn>
+            <ChapterMark number="IV" />
             <p className={styles.eyebrow}>The Husband I Want To Be</p>
           </FadeIn>
           <FadeIn delay={0.1}>
