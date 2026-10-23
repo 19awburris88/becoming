@@ -133,6 +133,9 @@ export default function WhenYoureReady() {
                     setError(false)
                   }}
                   autoComplete="off"
+                  autoCapitalize="none"
+                  autoCorrect="off"
+                  enterKeyHint="go"
                   spellCheck={false}
                 />
                 <button

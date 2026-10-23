@@ -137,17 +137,19 @@
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--white);
-  transition: background 0.35s ease, border-color 0.35s ease, color 0.35s ease;
+  transition: background 0.35s ease, border-color 0.35s ease, color 0.35s ease, transform 100ms ease-out;
 }
 
-.cta:hover {
-  background: rgba(184, 137, 59, 0.35);
-  border-color: var(--gold-light);
+@media (hover: hover) and (pointer: fine) {
+  .cta:hover {
+    background: rgba(184, 137, 59, 0.35);
+    border-color: var(--gold-light);
+  }
 }
 
 .scrollIndicator {
   position: absolute;
-  bottom: 2.5rem;
+  bottom: calc(2.5rem + env(safe-area-inset-bottom, 0px));
   left: 50%;
   transform: translateX(-50%);
   display: flex;
@@ -169,4 +171,9 @@
   letter-spacing: 0.25em;
   text-transform: uppercase;
   color: rgba(255, 253, 249, 0.4);
+}
+
+/* Press feedback lands the instant a finger touches down, not on release */
+.cta:active {
+  transform: scale(0.97);
 }

@@ -46,10 +46,12 @@
   gap: 0.5rem;
 }
 
-.card:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 12px 32px rgba(58, 16, 20, 0.1);
-  border-color: rgba(184, 137, 59, 0.22);
+@media (hover: hover) and (pointer: fine) {
+  .card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 32px rgba(58, 16, 20, 0.1);
+    border-color: rgba(184, 137, 59, 0.22);
+  }
 }
 
 .number {
@@ -62,8 +64,10 @@
   transition: opacity 0.25s ease;
 }
 
-.card:hover .number {
-  opacity: 1;
+@media (hover: hover) and (pointer: fine) {
+  .card:hover .number {
+    opacity: 1;
+  }
 }
 
 .text {

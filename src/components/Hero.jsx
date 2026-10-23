@@ -1,5 +1,5 @@
 import { useRef } from 'react'
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion'
 import { Ornament } from './ChapterMark'
 import styles from './Hero.module.css'
 
@@ -17,9 +17,10 @@ const item = {
 
 export default function Hero() {
   const ref = useRef(null)
+  const reduceMotion = useReducedMotion()
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] })
-  const bgY = useTransform(scrollYProgress, [0, 1], ['0%', '30%'])
-  const textY = useTransform(scrollYProgress, [0, 1], ['0%', '12%'])
+  const bgY = useTransform(scrollYProgress, [0, 1], ['0%', reduceMotion ? '0%' : '30%'])
+  const textY = useTransform(scrollYProgress, [0, 1], ['0%', reduceMotion ? '0%' : '12%'])
   const opacity = useTransform(scrollYProgress, [0, 0.6], [1, 0])
 
   return (

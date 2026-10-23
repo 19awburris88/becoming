@@ -31,6 +31,9 @@
 html {
   scroll-behavior: smooth;
   font-size: 16px;
+  /* Feel like an installed app on the phone, not a web page */
+  -webkit-tap-highlight-color: transparent; /* no gray flash on tap */
+  -webkit-text-size-adjust: 100%;           /* no font inflation in landscape */
 }
 
 body {
@@ -58,6 +61,21 @@ button {
   font-family: var(--font-body);
 }
 
+/* Controls respond instantly and never get their label selected on long-press.
+   Body text stays selectable. */
+button,
+a,
+[role="button"] {
+  touch-action: manipulation; /* drop the double-tap-zoom wait */
+}
+
+button,
+[role="button"] {
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+}
+
 a {
   text-decoration: none;
   color: inherit;
@@ -66,4 +84,17 @@ a {
 ::selection {
   background: var(--gold);
   color: var(--white);
+}
+
+/* Honor the phone's accessibility settings: gentler motion, solid surfaces */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *, *::before, *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
 }

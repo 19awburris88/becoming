@@ -21,6 +21,8 @@
   width: 100%;
   overflow: hidden;
   cursor: grab;
+  /* The strip owns horizontal swipes; vertical swipes still scroll the page */
+  touch-action: pan-y;
 }
 
 .container:active {

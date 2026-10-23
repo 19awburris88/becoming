@@ -97,12 +97,16 @@
   border-top: 1px solid rgba(184, 137, 59, 0.1);
 }
 
-.act:hover {
-  color: var(--oxblood);
+@media (hover: hover) and (pointer: fine) {
+  .act:hover {
+    color: var(--oxblood);
+  }
 }
 
-.act:hover .actDot {
-  opacity: 1;
+@media (hover: hover) and (pointer: fine) {
+  .act:hover .actDot {
+    opacity: 1;
+  }
 }
 
 .actDot {
@@ -151,9 +155,11 @@
   transition: border-color 0.2s ease, background 0.2s ease;
 }
 
-.expCard:hover {
-  border-color: var(--gold);
-  background: rgba(184, 137, 59, 0.04);
+@media (hover: hover) and (pointer: fine) {
+  .expCard:hover {
+    border-color: var(--gold);
+    background: rgba(184, 137, 59, 0.04);
+  }
 }
 
 .closing {

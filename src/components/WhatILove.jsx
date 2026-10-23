@@ -32,6 +32,7 @@ export default function WhatILove() {
               className={styles.card}
               onClick={() => setActive(card.id)}
               whileHover={{ y: -4, transition: { duration: 0.25 } }}
+              whileTap={{ scale: 0.98, transition: { duration: 0.1 } }}
             >
 <h3 className={styles.cardTitle}>{card.title}</h3>
               <p className={styles.preview}>{card.preview}</p>
@@ -56,7 +57,7 @@ export default function WhatILove() {
               initial={{ opacity: 0, scale: 0.94, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.94, y: 20 }}
-              transition={{ duration: 0.35, ease: [0.25, 0.1, 0.25, 1] }}
+              transition={{ type: 'spring', bounce: 0, duration: 0.4 }}
               onClick={e => e.stopPropagation()}
             >
               <button className={styles.close} onClick={() => setActive(null)}>

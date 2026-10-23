@@ -53,14 +53,18 @@
   transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-.alreadyCard:hover {
-  border-color: rgba(184, 137, 59, 0.3);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(58, 16, 20, 0.07);
+@media (hover: hover) and (pointer: fine) {
+  .alreadyCard:hover {
+    border-color: rgba(184, 137, 59, 0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(58, 16, 20, 0.07);
+  }
 }
 
-.alreadyCard:hover {
-  border-color: rgba(184, 137, 59, 0.3);
+@media (hover: hover) and (pointer: fine) {
+  .alreadyCard:hover {
+    border-color: rgba(184, 137, 59, 0.3);
+  }
 }
 
 .alreadyLabel {
@@ -167,10 +171,12 @@
   transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
-.visionCard:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 20px 52px rgba(58, 16, 20, 0.1);
-  border-color: rgba(184, 137, 59, 0.28);
+@media (hover: hover) and (pointer: fine) {
+  .visionCard:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 52px rgba(58, 16, 20, 0.1);
+    border-color: rgba(184, 137, 59, 0.28);
+  }
 }
 
 .visionIcon {
