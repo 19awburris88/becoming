@@ -98,3 +98,10 @@ a {
     animation-iteration-count: 1 !important;
   }
 }
+
+/* The book owns the whole screen: nothing scrolls or rubber-bands behind it */
+.book-mode,
+.book-mode body {
+  overflow: hidden;
+  overscroll-behavior: none;
+}

@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { MotionConfig } from 'framer-motion'
+import Book from './book/Book'
 import Home from './pages/Home'
 import Letters from './pages/Letters'
 import WhenYoureReady from './pages/WhenYoureReady'
@@ -11,7 +12,8 @@ export default function App() {
     <MotionConfig reducedMotion="user">
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Book />} />
+          <Route path="/scroll" element={<Home />} />
           <Route path="/letters" element={<Letters />} />
           <Route path="/when-youre-ready" element={<WhenYoureReady />} />
         </Routes>

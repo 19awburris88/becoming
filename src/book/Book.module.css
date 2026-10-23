@@ -1,0 +1,1171 @@
+/* ─────────────────────────────────────────────────────────────────────────────
+   The Next Chapter — as a book
+   The same palette, type, and ornament as the scrolling site, printed on pages.
+   Everything inside a page is sized from the page itself (container query
+   units), so the book typesets the same way on a phone, a foldable, or a tablet.
+   ───────────────────────────────────────────────────────────────────────────── */
+
+/* ── The reading room ─────────────────────────────────────────────────────── */
+
+.book {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100dvh;
+  background:
+    radial-gradient(ellipse at 50% 42%, #3d1115 0%, #230809 62%, #160405 100%);
+  color: var(--gold-light);
+  overflow: hidden;
+}
+
+.topBar {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: calc(0.6rem + env(safe-area-inset-top, 0px)) max(1rem, env(safe-area-inset-right, 0px)) 0.6rem max(1rem, env(safe-area-inset-left, 0px));
+  z-index: 10;
+}
+
+.brand,
+.tocButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  background: none;
+  border: none;
+  color: var(--gold-light);
+  transition: opacity 100ms ease-out;
+}
+
+.brand {
+  font-family: var(--font-display);
+  font-size: 1.02rem;
+  letter-spacing: 0.02em;
+}
+
+.brandIcon {
+  width: 26px;
+  height: 26px;
+  flex-shrink: 0;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.4));
+}
+
+.tocButton {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 0.55rem 0.9rem;
+  border: 1px solid rgba(217, 180, 106, 0.35);
+  border-radius: 999px;
+}
+
+.brand:active,
+.tocButton:active {
+  opacity: 0.6;
+}
+
+/* The surface the book rests on — and the drag surface for turning pages */
+.stage {
+  flex: 1 1 auto;
+  position: relative;
+  min-height: 0;
+  margin: 0 env(safe-area-inset-right, 0px) 0 env(safe-area-inset-left, 0px);
+  overflow: hidden;
+  touch-action: pan-y pinch-zoom; /* horizontal swipes turn pages; zoom is never taken away */
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+}
+
+.bottomBar {
+  flex: 0 0 auto;
+  padding: 0.4rem max(1.25rem, env(safe-area-inset-right, 0px)) calc(0.7rem + env(safe-area-inset-bottom, 0px)) max(1.25rem, env(safe-area-inset-left, 0px));
+}
+
+.progressTrack {
+  height: 1px;
+  background: rgba(217, 180, 106, 0.18);
+  margin-bottom: 0.55rem;
+}
+
+.progressFill {
+  height: 100%;
+  background: var(--gold-light);
+  transition: width 0.4s var(--ease-out-expo);
+}
+
+.progressLabel {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  font-size: 0.66rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(217, 180, 106, 0.6);
+  white-space: nowrap;
+}
+
+.progressLabel > span:only-child {
+  margin: 0 auto;
+}
+
+.progressChapter {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Arrow buttons for a mouse; touch uses swipes and taps */
+.navArrow {
+  display: none;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+  background: rgba(22, 4, 5, 0.4);
+  border: 1px solid rgba(217, 180, 106, 0.35);
+  color: var(--gold-light);
+  z-index: 20;
+  transition: opacity 0.2s ease, background 0.2s ease;
+}
+
+.navArrow:disabled {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.navPrev { left: 14px; }
+.navNext { right: 14px; }
+
+@media (hover: hover) and (pointer: fine) {
+  .navArrow { display: flex; }
+  .navArrow:hover { background: rgba(184, 137, 59, 0.3); }
+  .brand:hover,
+  .tocButton:hover { opacity: 0.8; }
+}
+
+/* ── The volume and its pages ─────────────────────────────────────────────── */
+
+.volume {
+  position: absolute;
+  perspective: 2400px;
+}
+
+.flat {
+  position: absolute;
+  inset: 0;
+}
+
+.slot {
+  position: absolute;
+  top: 0;
+  height: 100%;
+}
+
+.page {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  container-type: size;
+  background-color: var(--paper);
+  /* fine paper grain */
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+  color: var(--ink);
+}
+
+/* Paper tones — the same light/dark rhythm as the scrolling site */
+.light {
+  --paper: #FBF6EC;
+  --ink: var(--text);
+  --ink-soft: var(--text-light);
+  --ink-faint: #B49E8E;
+  --heading: var(--oxblood);
+  --accent: var(--gold);
+  --rule: rgba(184, 137, 59, 0.28);
+  --card: rgba(255, 253, 248, 0.6);
+}
+
+.sand {
+  --paper: #F1E6D2;
+  --ink: var(--text);
+  --ink-soft: var(--text-light);
+  --ink-faint: #A99280;
+  --heading: var(--oxblood);
+  --accent: #A97A2E;
+  --rule: rgba(169, 122, 46, 0.3);
+  --card: rgba(255, 253, 248, 0.45);
+}
+
+.dark,
+.deep {
+  --paper: var(--oxblood);
+  --ink: rgba(255, 253, 248, 0.9);
+  --ink-soft: rgba(255, 253, 248, 0.66);
+  --ink-faint: rgba(217, 180, 106, 0.55);
+  --heading: var(--ivory);
+  --accent: var(--gold-light);
+  --rule: rgba(217, 180, 106, 0.28);
+  --card: rgba(255, 253, 248, 0.05);
+}
+
+.deep {
+  --paper: var(--oxblood-deep);
+}
+
+/* The gutter: pages darken as they curve into the spine.
+   The outer edges show the stacked pages of the book block. */
+.left {
+  border-radius: 6px 0 0 6px;
+  box-shadow:
+    inset -28px 0 32px -26px rgba(30, 8, 10, 0.45),
+    -1px 0 0 #E9DDC7,
+    -2px 1px 0 #D6C6AA,
+    -3px 1px 0 #E9DDC7,
+    -4px 2px 0 #CDBB9C,
+    -10px 14px 30px rgba(0, 0, 0, 0.45);
+}
+
+.right {
+  border-radius: 0 6px 6px 0;
+  box-shadow:
+    inset 28px 0 32px -26px rgba(30, 8, 10, 0.45),
+    1px 0 0 #E9DDC7,
+    2px 1px 0 #D6C6AA,
+    3px 1px 0 #E9DDC7,
+    4px 2px 0 #CDBB9C,
+    10px 14px 30px rgba(0, 0, 0, 0.45);
+}
+
+.single {
+  border-radius: 3px 8px 8px 3px;
+  box-shadow:
+    inset 14px 0 18px -14px rgba(30, 8, 10, 0.35),
+    1px 0 0 #E9DDC7,
+    2px 1px 0 #D6C6AA,
+    3px 1px 0 #E9DDC7,
+    4px 2px 0 #CDBB9C,
+    0 14px 34px rgba(0, 0, 0, 0.5);
+}
+
+/* ── The turning page ─────────────────────────────────────────────────────── */
+
+.leaf {
+  position: absolute;
+  top: 0;
+  z-index: 5;
+  transform-origin: left center;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.faceBack {
+  transform: rotateY(180deg);
+}
+
+/* The back of a page on a phone: plain paper, a hint of the print behind it */
+.paperBack {
+  width: 100%;
+  height: 100%;
+  border-radius: 8px 3px 3px 8px;
+  background: linear-gradient(90deg, #EFE6D6, #F8F1E4 30%, #FBF6EC);
+}
+
+.shade {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(90deg, rgba(25, 6, 8, 0.65), rgba(25, 6, 8, 0.2));
+}
+
+.cast {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.castRight {
+  background: linear-gradient(90deg, rgba(20, 5, 6, 0.6), rgba(20, 5, 6, 0) 65%);
+}
+
+.castLeft {
+  background: linear-gradient(270deg, rgba(20, 5, 6, 0.6), rgba(20, 5, 6, 0) 65%);
+}
+
+/* ── Page furniture ───────────────────────────────────────────────────────── */
+
+.runHead,
+.folio {
+  flex: 0 0 auto;
+  height: clamp(30px, 7cqh, 50px);
+  display: flex;
+  justify-content: center;
+  padding: 0 clamp(18px, 8cqw, 46px);
+  font-size: 0.6rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.runHead {
+  align-items: flex-end;
+}
+
+.folio {
+  align-items: center;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 0.78rem;
+  letter-spacing: 0.05em;
+  text-transform: none;
+}
+
+.pageBody {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: hidden;
+  padding: clamp(10px, 3cqh, 22px) clamp(18px, 8cqw, 46px) 0;
+  font-size: clamp(14.5px, 4.1cqw, 17px);
+  line-height: 1.7;
+}
+
+.overflow {
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+/* Every block carries its own space below, so measured height = space taken */
+.block {
+  display: flow-root;
+  padding-bottom: 1.05em;
+}
+
+.block:has(> .dateRow),
+.block:has(> .reason),
+.block:has(> .bullet),
+.block:has(> .promise) {
+  padding-bottom: 0.55em;
+}
+
+.block:has(> .endLine) {
+  padding-bottom: 0.35em;
+}
+
+/* ── Chapter openers ──────────────────────────────────────────────────────── */
+
+.opener {
+  padding-top: clamp(8px, 7cqh, 72px);
+  padding-bottom: 0.4em;
+  text-align: center;
+}
+
+.eyebrow {
+  font-size: 0.66em;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.85em;
+}
+
+.heading {
+  font-family: var(--font-heading);
+  font-size: 1.9em;
+  font-weight: 400;
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+  color: var(--heading);
+  text-wrap: pretty; /* no single word left alone on the last line */
+}
+
+.sub {
+  margin-top: 0.75em;
+  font-family: var(--font-quote);
+  font-style: italic;
+  font-size: 0.92em;
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+
+.subOpener {
+  padding-top: 0.9em;
+  text-align: center;
+}
+
+.subHeading {
+  font-family: var(--font-heading);
+  font-size: 1.45em;
+  font-weight: 400;
+  line-height: 1.15;
+  color: var(--heading);
+  text-wrap: balance;
+}
+
+/* ── Prose ────────────────────────────────────────────────────────────────── */
+
+.para {
+  font-weight: 300;
+  line-height: 1.85;
+  letter-spacing: 0.01em;
+}
+
+.pullQuote {
+  font-family: var(--font-quote);
+  font-style: italic;
+  font-size: 1.22em;
+  line-height: 1.5;
+  color: var(--accent);
+  border-left: 2px solid var(--accent);
+  padding-left: 0.9em;
+}
+
+.emphasis {
+  font-family: var(--font-heading);
+  font-size: 1.45em;
+  font-weight: 500;
+  font-style: italic;
+  line-height: 1.3;
+  color: var(--heading);
+}
+
+.signature {
+  font-family: var(--font-quote);
+  font-style: italic;
+  line-height: 1.8;
+  color: var(--ink-soft);
+}
+
+.signature span {
+  font-size: 1.12em;
+  color: var(--accent);
+}
+
+/* ── Our Story ────────────────────────────────────────────────────────────── */
+
+.moment {
+  border-left: 1px solid var(--rule);
+  padding-left: 1em;
+}
+
+.momentDate {
+  display: block;
+  font-size: 0.64em;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.25em;
+}
+
+.momentLabel {
+  font-family: var(--font-heading);
+  font-size: 1.32em;
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--heading);
+  margin-bottom: 0.3em;
+}
+
+.momentText {
+  font-size: 0.93em;
+  font-weight: 300;
+  line-height: 1.7;
+  color: var(--ink-soft);
+}
+
+.momentFuture .momentLabel {
+  font-style: italic;
+  opacity: 0.75;
+}
+
+.momentFuture {
+  border-left-style: dashed;
+}
+
+.dateRow {
+  display: flex;
+  align-items: last baseline; /* a wrapped name's leader follows its last line */
+}
+
+.dateName {
+  font-family: var(--font-heading);
+  font-size: 1.1em;
+  font-weight: 500;
+  line-height: 1.3;
+  color: var(--heading);
+}
+
+.dateTag {
+  margin-left: 0.5em;
+  font-family: var(--font-quote);
+  font-size: 0.72em;
+  color: var(--accent);
+}
+
+.dateNum {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 0.85em;
+  color: var(--accent);
+}
+
+.leader {
+  flex: 1 1 auto;
+  min-width: 1.2em;
+  margin: 0 0.45em;
+  border-bottom: 1px dotted currentColor;
+  opacity: 0.35;
+  transform: translateY(-0.3em);
+}
+
+/* ── Our Moments: photographs tipped into the book ────────────────────────── */
+
+.plate {
+  width: min(100%, 50cqh);
+  margin: 0.6em auto 0;
+  padding: 3.5% 3.5% 0;
+  background: #FEFEFE;
+  box-shadow:
+    0 3px 10px rgba(0, 0, 0, 0.3),
+    0 10px 30px rgba(0, 0, 0, 0.25);
+}
+
+.plateImage {
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background: #E8E0D8;
+}
+
+.plateImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+.plateCaption {
+  padding: 0.7em 0.5em 0.9em;
+  text-align: center;
+  font-family: var(--font-quote);
+  font-style: italic;
+  font-size: 0.9em;
+  color: #555;
+}
+
+/* ── Cards (What I Love, The Husband, The Vision) ─────────────────────────── */
+
+.card {
+  padding: 1em 1.1em 1.1em;
+  border: 1px solid var(--rule);
+  border-radius: 10px;
+  background: var(--card);
+}
+
+.cardTitle {
+  font-family: var(--font-heading);
+  font-size: 1.32em;
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--heading);
+}
+
+.cardKicker {
+  margin-top: 0.15em;
+  font-family: var(--font-quote);
+  font-style: italic;
+  font-size: 0.88em;
+  color: var(--accent);
+}
+
+.cardBody {
+  margin-top: 0.5em;
+  font-size: 0.93em;
+  font-weight: 300;
+  line-height: 1.72;
+  color: var(--ink-soft);
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4em;
+  margin-bottom: 0.6em;
+}
+
+.tag {
+  font-size: 0.6em;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--accent);
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  padding: 0.3em 0.8em;
+}
+
+/* ── Love Looks Like Preparation / Already Building ───────────────────────── */
+
+.editorial p {
+  font-family: var(--font-heading);
+  font-size: 1.18em;
+  font-style: italic;
+  line-height: 1.45;
+  color: var(--heading);
+}
+
+.listLabel {
+  font-family: var(--font-quote);
+  font-style: italic;
+  color: var(--accent);
+  margin-bottom: 0.4em;
+}
+
+.bullet {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75em;
+  line-height: 1.55;
+  font-weight: 300;
+}
+
+.bulletDot {
+  flex-shrink: 0;
+  width: 0.38em;
+  height: 0.38em;
+  background: var(--accent);
+  transform: translateY(-0.15em) rotate(45deg);
+}
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5em;
+}
+
+.chip {
+  font-family: var(--font-heading);
+  font-size: 1em;
+  padding: 0.25em 0.9em;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  color: var(--heading);
+}
+
+.closingLine {
+  padding-top: 0.4em;
+  text-align: center;
+  font-family: var(--font-heading);
+  font-size: 1.22em;
+  font-style: italic;
+  line-height: 1.45;
+  color: var(--heading);
+  text-wrap: balance;
+}
+
+/* ── Promises ─────────────────────────────────────────────────────────────── */
+
+.promise {
+  display: flex;
+  align-items: baseline;
+  gap: 0.8em;
+  font-family: var(--font-heading);
+  font-size: 1.16em;
+  line-height: 1.4;
+  color: var(--ink);
+}
+
+.check {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.35em;
+  height: 1.35em;
+  border: 1px solid var(--accent);
+  border-radius: 50%;
+  color: var(--accent);
+  transform: translateY(0.2em);
+}
+
+/* ── The Endgame ──────────────────────────────────────────────────────────── */
+
+.endLine {
+  text-align: center;
+  font-family: var(--font-heading);
+  font-size: 1.14em;
+  line-height: 1.45;
+  color: var(--ink-soft);
+}
+
+.endBold {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.endGold {
+  color: var(--accent);
+  font-style: italic;
+}
+
+/* ── 100 Reasons ──────────────────────────────────────────────────────────── */
+
+.reason {
+  display: flex;
+  align-items: baseline;
+  gap: 0.8em;
+  font-size: 0.95em;
+  font-weight: 300;
+  line-height: 1.55;
+}
+
+.reasonNum {
+  flex-shrink: 0;
+  min-width: 1.6em;
+  font-family: var(--font-display);
+  font-style: italic;
+  color: var(--accent);
+}
+
+/* ── My Prayer ────────────────────────────────────────────────────────────── */
+
+.salutation {
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-size: 1.4em;
+  color: var(--heading);
+}
+
+.prayerLine {
+  font-family: var(--font-heading);
+  font-size: 1.12em;
+  line-height: 1.7;
+  color: var(--ink);
+}
+
+.prayerClose {
+  font-family: var(--font-quote);
+  font-style: italic;
+  font-size: 1.05em;
+  color: var(--ink-soft);
+  text-align: center;
+}
+
+.prayerWill {
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-size: 1.5em;
+  color: var(--accent);
+  text-align: center;
+}
+
+.amen {
+  font-family: var(--font-heading);
+  font-size: 1.6em;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  text-align: center;
+}
+
+/* ── The Next Chapter (closing) ───────────────────────────────────────────── */
+
+.statement {
+  padding-top: 0.5em;
+  text-align: center;
+  font-family: var(--font-heading);
+  font-size: 2em;
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: var(--heading);
+  text-wrap: balance;
+}
+
+.signoff {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.45em;
+  padding-top: 0.8em;
+  text-align: center;
+}
+
+.signoffRule {
+  width: 48px;
+  height: 1px;
+  background: var(--accent);
+  opacity: 0.45;
+  margin-bottom: 0.4em;
+}
+
+.signoffName {
+  font-family: var(--font-quote);
+  font-style: italic;
+  font-size: 1.6em;
+  color: var(--heading);
+}
+
+.signoffNote,
+.signoffWill {
+  font-size: 0.66em;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.signoffWill {
+  margin-top: 1.4em;
+  font-family: var(--font-heading);
+  font-size: 0.8em;
+  letter-spacing: 0.2em;
+  color: var(--accent);
+}
+
+/* ── Front and back matter ────────────────────────────────────────────────── */
+
+.titlePage,
+.blank {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1.1em;
+  padding: 0 clamp(18px, 8cqw, 46px);
+  text-align: center;
+  font-size: clamp(14px, 4cqw, 17px);
+}
+
+.blank {
+  opacity: 0.4;
+}
+
+.titleName {
+  font-family: var(--font-display);
+  font-size: 2.1em;
+  font-weight: 500;
+  line-height: 1.1;
+  color: var(--oxblood);
+}
+
+.titleAuthor {
+  font-family: var(--font-quote);
+  font-style: italic;
+  font-size: 1.35em;
+  color: var(--text);
+}
+
+.titleNote {
+  font-size: 0.66em;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-xlight);
+}
+
+.contentsPage {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: clamp(18px, 6cqh, 48px) clamp(18px, 8cqw, 46px);
+  font-size: clamp(13px, 3.7cqw, 16px);
+}
+
+.contentsTitle {
+  margin-bottom: 1em;
+  text-align: center;
+  font-family: var(--font-display);
+  font-size: 1.7em;
+  font-weight: 500;
+  color: var(--oxblood);
+}
+
+.contentsList,
+.tocList {
+  list-style: none;
+}
+
+.contentsRow {
+  display: flex;
+  align-items: baseline;
+  width: 100%;
+  padding: 0.42em 0;
+  background: none;
+  border: none;
+  text-align: left;
+  color: var(--text);
+  font-size: inherit;
+  transition: opacity 100ms ease-out;
+}
+
+.contentsRow:active {
+  opacity: 0.55;
+}
+
+.contentsMark {
+  flex-shrink: 0;
+  width: 5.6em;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 0.78em;
+  color: var(--gold);
+}
+
+.contentsName {
+  font-family: var(--font-heading);
+  font-size: 1.08em;
+  font-weight: 500;
+  line-height: 1.25;
+  color: var(--oxblood);
+}
+
+.contentsNum {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 0.85em;
+  color: var(--gold);
+}
+
+.contentsCurrent .contentsName {
+  text-decoration: underline;
+  text-decoration-color: var(--gold);
+  text-underline-offset: 0.25em;
+}
+
+/* ── The covers: red leather, gold tooling ────────────────────────────────── */
+
+.cover {
+  background:
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.16'/%3E%3C/svg%3E"),
+    radial-gradient(ellipse at 50% 38%, #8A2329 0%, #6B1A1F 48%, #3F0D10 100%);
+  color: var(--white);
+  text-align: center;
+}
+
+.cover.right,
+.cover.single {
+  box-shadow:
+    inset 10px 0 14px -8px rgba(20, 4, 6, 0.6),
+    2px 2px 0 #4E1115,
+    4px 4px 0 #3F0D10,
+    12px 18px 40px rgba(0, 0, 0, 0.55);
+}
+
+.cover.left {
+  box-shadow:
+    inset -10px 0 14px -8px rgba(20, 4, 6, 0.6),
+    -2px 2px 0 #4E1115,
+    -4px 4px 0 #3F0D10,
+    -12px 18px 40px rgba(0, 0, 0, 0.55);
+}
+
+.coverFrame {
+  position: absolute;
+  inset: clamp(10px, 4.5cqw, 26px);
+  border: 2px solid rgba(217, 180, 106, 0.75);
+  pointer-events: none;
+}
+
+.coverFrameInner {
+  position: absolute;
+  inset: 7px;
+  border: 1px solid rgba(217, 180, 106, 0.45);
+}
+
+.coverFrame::before,
+.coverFrame::after,
+.coverFrameInner::before,
+.coverFrameInner::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border: 1px solid rgba(217, 180, 106, 0.75);
+}
+
+.coverFrame::before { top: 13px; left: 13px; border-right: 0; border-bottom: 0; }
+.coverFrame::after { top: 13px; right: 13px; border-left: 0; border-bottom: 0; }
+.coverFrameInner::before { bottom: 6px; left: 6px; border-right: 0; border-top: 0; }
+.coverFrameInner::after { bottom: 6px; right: 6px; border-left: 0; border-top: 0; }
+
+.coverContent {
+  position: relative;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 clamp(26px, 12cqw, 64px);
+  font-size: clamp(14px, 3.9cqw, 17px);
+}
+
+.coverEyebrow {
+  font-size: 0.68em;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold-light);
+  margin-bottom: 1.4em;
+}
+
+.coverTitle {
+  font-family: var(--font-display);
+  font-size: clamp(2.6rem, 16cqw, 6rem);
+  font-weight: 700;
+  line-height: 0.95;
+  margin-bottom: 0.3em;
+  background: var(--gold-gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 2px 0 rgba(40, 8, 11, 0.6)) drop-shadow(0 6px 14px rgba(20, 4, 6, 0.45));
+}
+
+.coverOrnament {
+  margin-bottom: 1.5em;
+}
+
+.coverOrnament > span {
+  color: var(--gold-light);
+}
+
+.coverSubtitle {
+  font-family: var(--font-quote);
+  font-style: italic;
+  font-size: 1.3em;
+  color: var(--gold-light);
+  margin-bottom: 1em;
+}
+
+.coverCopy {
+  font-weight: 300;
+  line-height: 1.8;
+  color: rgba(255, 253, 249, 0.78);
+  max-width: 24em;
+  margin-bottom: 2em;
+}
+
+.coverCta {
+  padding: 0.85em 2em;
+  background: none;
+  border: 1px solid rgba(217, 180, 106, 0.6);
+  border-radius: 999px;
+  font-size: 0.72em;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--white);
+  transition: background 0.35s ease, border-color 0.35s ease, transform 100ms ease-out;
+}
+
+.coverCta:active {
+  transform: scale(0.97);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .coverCta:hover {
+    background: rgba(184, 137, 59, 0.35);
+    border-color: var(--gold-light);
+  }
+}
+
+.backTitle {
+  font-family: var(--font-display);
+  font-size: 1.2em;
+  color: var(--gold-light);
+  letter-spacing: 0.04em;
+}
+
+/* ── Contents panel ───────────────────────────────────────────────────────── */
+
+.scrim {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  background: rgba(16, 3, 4, 0.55);
+}
+
+.toc {
+  position: fixed;
+  z-index: 50;
+  top: calc(3.6rem + env(safe-area-inset-top, 0px));
+  right: max(0.75rem, env(safe-area-inset-right, 0px));
+  width: min(380px, calc(100vw - 1.5rem));
+  max-height: calc(100dvh - 5rem - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px));
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 1.1rem 1.25rem 1.25rem;
+  border-radius: 14px;
+  background: #FBF6EC;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+  transform-origin: top right; /* opens from the Contents button */
+  font-size: 15px;
+}
+
+.tocHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+.tocHeader h2 {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: var(--oxblood);
+}
+
+.tocClose {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: none;
+  border: 1px solid rgba(184, 137, 59, 0.3);
+  color: var(--text-light);
+  transition: opacity 100ms ease-out;
+}
+
+.tocClose:active {
+  opacity: 0.55;
+}
+
+/* ── Off-screen typesetting ───────────────────────────────────────────────── */
+
+.measurer {
+  position: fixed;
+  top: 0;
+  left: -10000px;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* Reduce Transparency: a solid scrim */
+@media (prefers-reduced-transparency: reduce) {
+  .scrim { background: rgba(16, 3, 4, 0.9); }
+}

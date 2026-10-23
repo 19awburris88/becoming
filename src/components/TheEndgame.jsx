@@ -1,6 +1,6 @@
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
-import { endgame } from '../data/content'
+import { endgame, endgameBold, endgameGold } from '../data/content'
 import styles from './TheEndgame.module.css'
 
 function Line({ text, index, isBold, isCopper }) {
@@ -20,21 +20,6 @@ function Line({ text, index, isBold, isCopper }) {
   )
 }
 
-const boldLines = new Set([
-  "I never wanted to date just to date.",
-  "Because I was intentional.",
-  "I started what I call the Endgame Fund.",
-  "But because preparation is an act of faith.",
-  "It's something you build.",
-  "I'm preparing for the future I hope God is writing.",
-  "then she is worth preparing for today.",
-])
-
-const copperLines = new Set([
-  "I'm preparing for the future I hope God is writing.",
-  "then she is worth preparing for today.",
-])
-
 export default function TheEndgame() {
   return (
     <section className={styles.section}>
@@ -53,8 +38,8 @@ export default function TheEndgame() {
               key={i}
               text={line}
               index={i}
-              isBold={boldLines.has(line)}
-              isCopper={copperLines.has(line)}
+              isBold={endgameBold.has(line)}
+              isCopper={endgameGold.has(line)}
             />
           ))}
         </div>

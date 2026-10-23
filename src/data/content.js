@@ -301,6 +301,22 @@ export const endgame = {
   ],
 }
 
+// Lines in The Endgame set in bold, and the ones set in gold
+export const endgameBold = new Set([
+  "I never wanted to date just to date.",
+  "Because I was intentional.",
+  "I started what I call the Endgame Fund.",
+  "But because preparation is an act of faith.",
+  "It's something you build.",
+  "I'm preparing for the future I hope God is writing.",
+  "then she is worth preparing for today.",
+])
+
+export const endgameGold = new Set([
+  "I'm preparing for the future I hope God is writing.",
+  "then she is worth preparing for today.",
+])
+
 export const letters = [
   {
     id: 1,
