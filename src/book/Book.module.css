@@ -358,6 +358,10 @@
   padding-bottom: 1.05em;
 }
 
+.blockCut {
+  padding-bottom: 0; /* the paragraph carries on over the page */
+}
+
 .block:has(> .dateRow),
 .block:has(> .reason),
 .block:has(> .bullet),
@@ -1168,4 +1172,24 @@
 /* Reduce Transparency: a solid scrim */
 @media (prefers-reduced-transparency: reduce) {
   .scrim { background: rgba(16, 3, 4, 0.9); }
+}
+
+/* Short screens (a foldable or tablet held sideways, with Safari's bar showing):
+   slimmer bars, so the book gets the height */
+@media (max-height: 700px) {
+  .topBar {
+    padding-top: calc(0.35rem + env(safe-area-inset-top, 0px));
+    padding-bottom: 0.35rem;
+  }
+
+  .brand { font-size: 0.92rem; }
+  .brandIcon { width: 22px; height: 22px; }
+  .tocButton { padding: 0.4rem 0.75rem; }
+
+  .bottomBar {
+    padding-top: 0.25rem;
+    padding-bottom: calc(0.45rem + env(safe-area-inset-bottom, 0px));
+  }
+
+  .progressTrack { margin-bottom: 0.4rem; }
 }

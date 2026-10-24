@@ -119,8 +119,10 @@ The book is laid out the way a typesetter would lay out a printed book, fresh fo
 
 1. Each chapter is a list of **blocks**: a paragraph, a card, a date, a reason, a photo.
 2. Every block is measured off-screen at the real page size.
-3. Blocks are packed onto pages in order. A block is never split across pages.
-4. A sub-heading (like "The Dates") is kept on the same page as the first item that follows it.
+3. Blocks are packed onto pages in order.
+4. **Prose flows across pages** like print: when a paragraph of the letter or the prayer doesn't fit, as many words as fit finish the page and the rest continue on the next. There are always at least two lines on each side of the break, so a single line is never left stranded.
+5. Cards, dates, reasons, and photos are never split; one that doesn't fit moves whole to the next page.
+6. A sub-heading (like "The Dates") is kept on the same page as the first item that follows it.
 
 On two-page spreads, it follows print conventions: the cover stands alone on the right, **every chapter opens on a right-hand page** (with a blank, ornamented page opposite if needed), and the back cover closes on the left.
 

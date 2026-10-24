@@ -3,7 +3,7 @@ import { AnimatePresence, animate, motion, useMotionValue, useReducedMotion, use
 import { ChevronLeft, ChevronRight, List, X } from 'lucide-react'
 import { chapters } from './chapters'
 import { photos } from '../data/photos'
-import { paginate, buildViews, viewForPage, anchorFor, pageForAnchor } from './paginate'
+import { paginate, buildViews, viewForPage, anchorFor, pageForAnchor, blockIndex } from './paginate'
 import Page from './Page'
 import S from './Book.module.css'
 
@@ -30,10 +30,10 @@ const dualScreen = () => window.matchMedia?.('(horizontal-viewport-segments: 2)'
 
 function layoutFor(w, h) {
   const spread = dualScreen() || (w >= 700 && w / h >= 0.8)
-  const margin = spread ? 28 : 10
+  const margin = spread ? 16 : 10
   let pageH = h - margin * 2
   let pageW = spread ? (w - margin * 2) / 2 : w - margin * 2
-  const [minRatio, maxRatio] = spread ? [0.6, 0.76] : [0.45, 0.8]
+  const [minRatio, maxRatio] = spread ? [0.6, 0.8] : [0.45, 0.8]
   if (pageW / pageH > maxRatio) pageW = pageH * maxRatio
   if (pageW / pageH < minRatio) pageH = pageW / minRatio
   pageW = Math.min(pageW, 640)
@@ -54,6 +54,47 @@ function useSize(ref) {
     return () => ro.disconnect()
   }, [ref])
   return size
+}
+
+// Measures part of a prose paragraph (a range of its words) in the off-screen
+// typesetter, and finds how much of it fits in a given height — at least two
+// lines on each side of a page break, so no lone line is left behind.
+function measureParts(root) {
+  const box = root.querySelector('[data-scratch]')
+  const para = box.firstElementChild
+  const set = (c, i, from, to) => {
+    const block = chapters[c].blocks[i]
+    para.className = block.className
+    para.textContent = block.words.slice(from, to).join(' ')
+  }
+  const lineHeight = () => parseFloat(getComputedStyle(para).lineHeight)
+  const lines = (c, i, from, to) => {
+    set(c, i, from, to)
+    return Math.round(para.getBoundingClientRect().height / lineHeight())
+  }
+
+  return {
+    // Height of the words [from, to) as a whole block, spacing included
+    height(c, i, from, to) {
+      set(c, i, from, to)
+      return box.getBoundingClientRect().height
+    },
+    // The most words, starting at `from`, that fit in `available` px
+    fit(c, i, from, available) {
+      const n = chapters[c].blocks[i].words.length
+      let lo = from
+      let hi = n
+      while (lo < hi) {
+        const mid = Math.ceil((lo + hi) / 2)
+        set(c, i, from, mid)
+        if (para.getBoundingClientRect().height <= available) lo = mid
+        else hi = mid - 1
+      }
+      let to = lo
+      while (to > from && to < n && lines(c, i, to, n) < 2) to-- // no lone last line
+      return to > from && lines(c, i, from, to) >= 2 ? to : from // no lone first line
+    },
+  }
 }
 
 function releaseVelocity(samples) {
@@ -102,7 +143,7 @@ export default function Book() {
         const [c, i] = el.dataset.b.split('-').map(Number)
         heights[c][i] = el.getBoundingClientRect().height // sub-pixel: rounding adds up over 100 reasons
       })
-      const { pages, chapterStart } = paginate(chapters, heights, usable, layout.spread)
+      const { pages, chapterStart } = paginate(chapters, heights, usable, layout.spread, measureParts(root))
       setBook({ ...layout, pages, chapterStart, views: buildViews(pages.length, layout.spread) })
     }
     run()
@@ -354,7 +395,7 @@ export default function Book() {
       for (const i of book.views[v] ?? []) {
         const page = book.pages[i]
         if (page?.chapter !== momentsIndex) continue
-        page.blocks.filter(blk => blk > 0).forEach(blk => {
+        page.blocks.map(blockIndex).filter(blk => blk > 0).forEach(blk => {
           new Image().src = photos[blk - 1].src
         })
       }
@@ -533,6 +574,7 @@ export default function Book() {
             width={layout.pageW}
             height={layout.pageH}
           >
+            <div data-scratch="" className={S.block}><p /></div>
             <div data-flow="">
               {chapters.flatMap((ch, c) =>
                 ch.blocks.map((blk, i) => (

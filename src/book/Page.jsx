@@ -90,9 +90,20 @@ const Page = forwardRef(function Page(
       <header className={S.runHead}>{page.opener ? '' : runningHead}</header>
       <div ref={ref} className={`${S.pageBody} ${page.overflow ? S.overflow : ''}`} data-body={measuring ? '' : undefined}>
         {children ??
-          page.blocks.map(i => (
-            <div key={i} className={S.block}>{chapter.blocks[i].node}</div>
-          ))}
+          page.blocks.map(entry => {
+            if (typeof entry === 'number') {
+              return <div key={entry} className={S.block}>{chapter.blocks[entry].node}</div>
+            }
+            // Part of a paragraph that flows across the page break
+            const { i, from, to } = entry
+            const block = chapter.blocks[i]
+            const continues = to < block.words.length
+            return (
+              <div key={`${i}-${from}`} className={`${S.block} ${continues ? S.blockCut : ''}`}>
+                <p className={block.className}>{block.words.slice(from, to).join(' ')}</p>
+              </div>
+            )
+          })}
       </div>
       <footer className={S.folio}>{index}</footer>
     </div>

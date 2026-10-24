@@ -24,7 +24,12 @@ import S from './Book.module.css'
 // tone: the paper the chapter is printed on, matching the scrolling site's rhythm
 //   light = ivory, sand = warm sand, dark = oxblood, deep = deep oxblood
 
-const p = (text, className = S.para) => ({ node: <p className={className}>{text}</p> })
+// Prose paragraphs can flow across a page break, like print; everything else stays whole
+const flowing = new Set([S.para, S.prayerLine])
+const p = (text, className = S.para) => ({
+  node: <p className={className}>{text}</p>,
+  ...(flowing.has(className) && { className, words: text.split(/\s+/) }),
+})
 
 const letter = {
   id: 'letter',
